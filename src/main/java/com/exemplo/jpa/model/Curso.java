@@ -1,9 +1,11 @@
 package com.exemplo.jpa.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
+@Table(name = "curso")
 public class Curso {
 
     @Id
@@ -11,18 +13,28 @@ public class Curso {
     private Long id;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "titulo")
     private String titulo;
 
     @NotNull
-    @Column(nullable = false)
+    @Positive
+    @Column(name = "duracao_horas")
     private Double duracaoHoras;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instrutor_id")
     private Instrutor instrutor;
 
-    // Getters e Setters
+    // Constructors
+    public Curso() {}
+
+    public Curso(String titulo, Double duracaoHoras, Instrutor instrutor) {
+        this.titulo = titulo;
+        this.duracaoHoras = duracaoHoras;
+        this.instrutor = instrutor;
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }

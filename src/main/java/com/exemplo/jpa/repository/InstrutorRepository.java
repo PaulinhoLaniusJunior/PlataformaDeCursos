@@ -1,5 +1,7 @@
 package com.exemplo.jpa.repository;
 
-public class InstrutorRepository {
-    
+import com.exemplo.jpa.model.Instrutor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface InstrutorRepository extends JpaRepository<Instrutor, Long> {
 }
